@@ -39,6 +39,10 @@ func TestCamelCase(t *testing.T) {
 		inEntry:  &yang.Entry{Name: "leaf"},
 		wantName: "Leaf",
 	}, {
+		name:     "corner case identifier",
+		inEntry:  &yang.Entry{Name: "foo_bar-baz.field"},
+		wantName: "FooBarBazField",
+	}, {
 		name:     "already camelcase",
 		inEntry:  &yang.Entry{Name: "AlreadyCamelCase"},
 		wantName: "AlreadyCamelCase",

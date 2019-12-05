@@ -32,17 +32,17 @@ func Resolve(n ygot.PathStruct) (*gpb.Path, []error) {
 	return &gpb.Path{Target: root.id, Elem: p}, nil
 }
 
-// ChoiceCaseAnonymousCase represents the /choice-case-example/choice-case-anonymous-case YANG schema element.
+// ChoiceCaseAnonymousCase represents the /choice-case-example/choice-case-anonymous.case YANG schema element.
 type ChoiceCaseAnonymousCase struct {
 	ygot.NodePath
 }
 
-// ChoiceCaseAnonymousCase_A represents the /choice-case-example/choice-case-anonymous-case/foo/a/a YANG schema element.
+// ChoiceCaseAnonymousCase_A represents the /choice-case-example/choice-case-anonymous.case/foo/a/a YANG schema element.
 type ChoiceCaseAnonymousCase_A struct {
 	ygot.NodePath
 }
 
-// ChoiceCaseAnonymousCase_B represents the /choice-case-example/choice-case-anonymous-case/foo/b/b YANG schema element.
+// ChoiceCaseAnonymousCase_B represents the /choice-case-example/choice-case-anonymous.case/foo/b/b YANG schema element.
 type ChoiceCaseAnonymousCase_B struct {
 	ygot.NodePath
 }
@@ -116,11 +116,11 @@ func ForDevice(id string) *Device {
 	return &Device{id: id}
 }
 
-// ChoiceCaseAnonymousCase returns from Device the path struct for its child "choice-case-anonymous-case".
+// ChoiceCaseAnonymousCase returns from Device the path struct for its child "choice-case-anonymous.case".
 func (n *Device) ChoiceCaseAnonymousCase() *ChoiceCaseAnonymousCase {
 	return &ChoiceCaseAnonymousCase{
 		NodePath: ygot.NewNodePath(
-			[]string{"choice-case-anonymous-case"},
+			[]string{"choice-case-anonymous.case"},
 			map[string]interface{}{},
 			n,
 		),

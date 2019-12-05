@@ -30,7 +30,7 @@ type Binary []byte
 // in the generated code.
 type YANGEmpty bool
 
-// ChoiceCaseExample_ChoiceCaseAnonymousCase represents the /choice-case-example/choice-case-anonymous-case YANG schema element.
+// ChoiceCaseExample_ChoiceCaseAnonymousCase represents the /choice-case-example/choice-case-anonymous.case YANG schema element.
 type ChoiceCaseExample_ChoiceCaseAnonymousCase struct {
 	A	*string	`path:"a" module:"choice-case-example"`
 	B	*string	`path:"b" module:"choice-case-example"`

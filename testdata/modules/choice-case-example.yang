@@ -13,7 +13,7 @@ module choice-case-example {
     }
   }
 
-  container choice-case-anonymous-case {
+  container choice-case-anonymous.case {
     choice foo {
       leaf a { type string; }
       leaf b { type string; }
