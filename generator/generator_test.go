@@ -20,7 +20,7 @@ import (
 	"testing"
 
 	"github.com/kylelemons/godebug/pretty"
-	"github.com/openconfig/ygot/ygen"
+	"github.com/michaelhenkel/ygot/ygen"
 )
 
 func TestWriteGoCode(t *testing.T) {

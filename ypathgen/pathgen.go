@@ -28,11 +28,11 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/michaelhenkel/ygot/genutil"
+	"github.com/michaelhenkel/ygot/util"
+	"github.com/michaelhenkel/ygot/ygen"
+	"github.com/michaelhenkel/ygot/ygot"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/genutil"
-	"github.com/openconfig/ygot/util"
-	"github.com/openconfig/ygot/ygen"
-	"github.com/openconfig/ygot/ygot"
 )
 
 // Static default configuration values that differ from the zero value for their types.

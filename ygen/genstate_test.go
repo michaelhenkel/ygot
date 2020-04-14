@@ -22,8 +22,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/kylelemons/godebug/pretty"
+	"github.com/michaelhenkel/ygot/genutil"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/genutil"
 )
 
 // TestFindEnumSet tests the findEnumSet function, ensuring that it performs

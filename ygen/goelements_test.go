@@ -20,8 +20,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/kylelemons/godebug/pretty"
+	"github.com/michaelhenkel/ygot/ygot"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/ygot"
 )
 
 // TestUnionSubTypes extracts the types which make up a YANG union from a

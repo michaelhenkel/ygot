@@ -12,12 +12,19 @@ It has these top-level messages:
 */
 package openconfig_openconfig_rib_bgp
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
-import ywrapper "github.com/openconfig/ygot/proto/ywrapper"
-import _ "github.com/openconfig/ygot/proto/yext"
-import openconfig_enums "github.com/openconfig/ygot/demo/protobuf_getting_started/ribproto/openconfig/enums"
+import (
+	fmt "fmt"
+
+	proto "github.com/golang/protobuf/proto"
+
+	math "math"
+
+	ywrapper "github.com/michaelhenkel/ygot/proto/ywrapper"
+
+	_ "github.com/michaelhenkel/ygot/proto/yext"
+
+	openconfig_enums "github.com/michaelhenkel/ygot/demo/protobuf_getting_started/ribproto/openconfig/enums"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal

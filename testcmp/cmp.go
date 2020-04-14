@@ -25,9 +25,9 @@ import (
 	log "github.com/golang/glog"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/openconfig/ygot/testutil"
-	"github.com/openconfig/ygot/ygot"
-	"github.com/openconfig/ygot/ytypes"
+	"github.com/michaelhenkel/ygot/testutil"
+	"github.com/michaelhenkel/ygot/ygot"
+	"github.com/michaelhenkel/ygot/ytypes"
 
 	gnmipb "github.com/openconfig/gnmi/proto/gnmi"
 )

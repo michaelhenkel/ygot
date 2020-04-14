@@ -27,10 +27,10 @@ import (
 	"time"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/openconfig/ygot/ygot"
+	"github.com/michaelhenkel/ygot/ygot"
 
 	log "github.com/golang/glog"
-	oc "github.com/openconfig/ygot/exampleoc"
+	oc "github.com/michaelhenkel/ygot/exampleoc"
 
 	gnmipb "github.com/openconfig/gnmi/proto/gnmi"
 )

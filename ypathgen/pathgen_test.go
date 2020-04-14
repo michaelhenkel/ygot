@@ -22,10 +22,10 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
+	"github.com/michaelhenkel/ygot/testutil"
+	"github.com/michaelhenkel/ygot/ygen"
 	"github.com/openconfig/gnmi/errdiff"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/testutil"
-	"github.com/openconfig/ygot/ygen"
 )
 
 const (
@@ -430,7 +430,7 @@ func TestGeneratePathCode(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			genCode := func() (string, NodeDataMap, *GenConfig) {
-				cg := NewDefaultConfig("github.com/openconfig/ygot/ypathgen/testdata/exampleoc")
+				cg := NewDefaultConfig("github.com/michaelhenkel/ygot/ypathgen/testdata/exampleoc")
 				// Set the name of the caller explicitly to avoid issues when
 				// the unit tests are called by external test entities.
 				cg.GeneratingBinary = "pathgen-tests"
@@ -528,7 +528,7 @@ func TestGeneratePathCodeSplitFiles(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			genCode := func() ([]string, *GenConfig) {
-				cg := NewDefaultConfig("github.com/openconfig/ygot/ypathgen/testdata/exampleoc")
+				cg := NewDefaultConfig("github.com/michaelhenkel/ygot/ypathgen/testdata/exampleoc")
 				// Set the name of the caller explicitly to avoid issues when
 				// the unit tests are called by external test entities.
 				cg.GeneratingBinary = "pathgen-tests"

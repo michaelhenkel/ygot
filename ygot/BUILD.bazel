@@ -1,0 +1,62 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "diff.go",
+        "helpers.go",
+        "path_types.go",
+        "pathstrings.go",
+        "proto.go",
+        "render.go",
+        "schema.go",
+        "struct_validation_map.go",
+        "types.go",
+    ],
+    importpath = "github.com/michaelhenkel/ygot/ygot",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//proto/yext:go_default_library",
+        "//proto/ywrapper:go_default_library",
+        "//util:go_default_library",
+        "@com_github_golang_protobuf//proto:go_default_library",
+        "@com_github_google_go_cmp//cmp:go_default_library",
+        "@com_github_kylelemons_godebug//pretty:go_default_library",
+        "@com_github_openconfig_gnmi//errlist:go_default_library",
+        "@com_github_openconfig_gnmi//proto/gnmi:go_default_library",
+        "@com_github_openconfig_gnmi//value:go_default_library",
+        "@com_github_openconfig_goyang//pkg/yang:go_default_library",
+        "@org_golang_google_protobuf//proto:go_default_library",
+        "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
+        "@org_golang_google_protobuf//types/descriptorpb:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "diff_test.go",
+        "helpers_test.go",
+        "path_types_test.go",
+        "pathstrings_test.go",
+        "proto_test.go",
+        "render_test.go",
+        "schema_test.go",
+        "struct_validation_map_test.go",
+    ],
+    embed = [":go_default_library"],
+    deps = [
+        "//proto/ywrapper:go_default_library",
+        "//testutil:go_default_library",
+        "//util:go_default_library",
+        "//ygot/testdata/exschemapath:go_default_library",
+        "@com_github_golang_protobuf//proto:go_default_library",
+        "@com_github_google_go_cmp//cmp:go_default_library",
+        "@com_github_google_go_cmp//cmp/cmpopts:go_default_library",
+        "@com_github_kylelemons_godebug//pretty:go_default_library",
+        "@com_github_openconfig_gnmi//errdiff:go_default_library",
+        "@com_github_openconfig_gnmi//proto/gnmi:go_default_library",
+        "@com_github_openconfig_goyang//pkg/yang:go_default_library",
+        "@org_golang_google_protobuf//proto:go_default_library",
+    ],
+)

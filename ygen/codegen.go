@@ -25,10 +25,10 @@ import (
 
 	log "github.com/golang/glog"
 
+	"github.com/michaelhenkel/ygot/genutil"
+	"github.com/michaelhenkel/ygot/util"
+	"github.com/michaelhenkel/ygot/ygot"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/genutil"
-	"github.com/openconfig/ygot/util"
-	"github.com/openconfig/ygot/ygot"
 
 	gpb "github.com/openconfig/gnmi/proto/gnmi"
 )
@@ -186,12 +186,12 @@ type ProtoOpts struct {
 	// AnnotateSchemaPaths specifies whether the extensions defined in
 	// yext.proto should be used to annotate schema paths into the output
 	// protobuf file. See
-	// https://github.com/openconfig/ygot/blob/master/docs/yang-to-protobuf-transformations-spec.md#annotation-of-schema-paths
+	// https://github.com/michaelhenkel/ygot/blob/master/docs/yang-to-protobuf-transformations-spec.md#annotation-of-schema-paths
 	AnnotateSchemaPaths bool
 	// AnnotateEnumNames specifies whether the extensions defined in
 	// yext.proto should be used to annotate enum values with their
 	// original YANG names in the output protobuf file.
-	// See https://github.com/openconfig/ygot/blob/master/docs/yang-to-protobuf-transformations-spec.md#annotation-of-enums
+	// See https://github.com/michaelhenkel/ygot/blob/master/docs/yang-to-protobuf-transformations-spec.md#annotation-of-enums
 	AnnotateEnumNames bool
 	// NestedMessages indicates whether nested messages should be
 	// output for the protobuf schema. If false, a separate package

@@ -26,10 +26,10 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/kylelemons/godebug/pretty"
+	"github.com/michaelhenkel/ygot/genutil"
+	"github.com/michaelhenkel/ygot/testutil"
 	"github.com/openconfig/gnmi/errdiff"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/genutil"
-	"github.com/openconfig/ygot/testutil"
 )
 
 const (

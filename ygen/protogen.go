@@ -24,9 +24,9 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/michaelhenkel/ygot/genutil"
+	"github.com/michaelhenkel/ygot/util"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/genutil"
-	"github.com/openconfig/ygot/util"
 )
 
 // Constants defining the defaults for Protobuf package generation. These constants
@@ -42,10 +42,10 @@ const (
 	DefaultEnumPackageName = "enums"
 	// DefaultYwrapperPath defines the default import path for the ywrapper.proto file,
 	// excluding the filename.
-	DefaultYwrapperPath = "github.com/openconfig/ygot/proto/ywrapper"
+	DefaultYwrapperPath = "github.com/michaelhenkel/ygot/proto/ywrapper"
 	// DefaultYextPath defines the default import path for the yext.proto file, excluding
 	// the filename.
-	DefaultYextPath = "github.com/openconfig/ygot/proto/yext"
+	DefaultYextPath = "github.com/michaelhenkel/ygot/proto/yext"
 )
 
 const (

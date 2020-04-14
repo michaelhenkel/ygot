@@ -8,8 +8,8 @@ import (
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/descriptorpb"
 
-	yextpb "github.com/openconfig/ygot/proto/yext"
-	wpb "github.com/openconfig/ygot/proto/ywrapper"
+	yextpb "github.com/michaelhenkel/ygot/proto/yext"
+	wpb "github.com/michaelhenkel/ygot/proto/ywrapper"
 )
 
 // pathsFromProto returns, from a populated proto, a map between the YANG schema

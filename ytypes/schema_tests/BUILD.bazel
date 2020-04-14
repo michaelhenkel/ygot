@@ -1,0 +1,39 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["validate.go"],
+    importpath = "github.com/michaelhenkel/ygot/ytypes/schema_tests",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "diff_benchmark_test.go",
+        "get_test.go",
+        "leafref_benchmark_test.go",
+        "race_test.go",
+        "set_test.go",
+        "validate_test.go",
+    ],
+    data = glob(["testdata/**"]),
+    embed = [":go_default_library"],
+    deps = [
+        "//exampleoc:go_default_library",
+        "//experimental/ygotutils:go_default_library",
+        "//testutil:go_default_library",
+        "//uexampleoc:go_default_library",
+        "//util:go_default_library",
+        "//ygot:go_default_library",
+        "//ytypes:go_default_library",
+        "@com_github_golang_protobuf//proto:go_default_library",
+        "@com_github_google_go_cmp//cmp:go_default_library",
+        "@com_github_google_go_cmp//cmp/cmpopts:go_default_library",
+        "@com_github_openconfig_gnmi//errdiff:go_default_library",
+        "@com_github_openconfig_gnmi//proto/gnmi:go_default_library",
+        "@com_github_openconfig_goyang//pkg/yang:go_default_library",
+        "@org_golang_google_genproto//googleapis/rpc/code:go_default_library",
+        "@org_golang_google_genproto//googleapis/rpc/status:go_default_library",
+    ],
+)

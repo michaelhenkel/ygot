@@ -22,12 +22,12 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	"github.com/kylelemons/godebug/pretty"
+	"github.com/michaelhenkel/ygot/exampleoc"
+	"github.com/michaelhenkel/ygot/testutil"
+	"github.com/michaelhenkel/ygot/uexampleoc"
+	"github.com/michaelhenkel/ygot/ygot"
 	"github.com/openconfig/gnmi/errdiff"
 	"github.com/openconfig/gnmi/value"
-	"github.com/openconfig/ygot/exampleoc"
-	"github.com/openconfig/ygot/testutil"
-	"github.com/openconfig/ygot/uexampleoc"
-	"github.com/openconfig/ygot/ygot"
 
 	gnmipb "github.com/openconfig/gnmi/proto/gnmi"
 )

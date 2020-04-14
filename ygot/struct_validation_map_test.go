@@ -26,9 +26,9 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/kylelemons/godebug/pretty"
 
+	"github.com/michaelhenkel/ygot/testutil"
 	"github.com/openconfig/gnmi/errdiff"
 	gnmipb "github.com/openconfig/gnmi/proto/gnmi"
-	"github.com/openconfig/ygot/testutil"
 )
 
 const (

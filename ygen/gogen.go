@@ -24,12 +24,12 @@ import (
 	log "github.com/golang/glog"
 	"github.com/google/go-cmp/cmp"
 
+	"github.com/michaelhenkel/ygot/genutil"
+	"github.com/michaelhenkel/ygot/util"
+	"github.com/michaelhenkel/ygot/ygot"
 	"github.com/openconfig/gnmi/errlist"
 	gpb "github.com/openconfig/gnmi/proto/gnmi"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/genutil"
-	"github.com/openconfig/ygot/util"
-	"github.com/openconfig/ygot/ygot"
 )
 
 const (

@@ -18,12 +18,12 @@ import (
 	"testing"
 
 	"github.com/kylelemons/godebug/pretty"
+	"github.com/michaelhenkel/ygot/exampleoc"
+	"github.com/michaelhenkel/ygot/testutil"
+	"github.com/michaelhenkel/ygot/uexampleoc"
+	"github.com/michaelhenkel/ygot/ygot"
+	"github.com/michaelhenkel/ygot/ytypes"
 	"github.com/openconfig/gnmi/errdiff"
-	"github.com/openconfig/ygot/exampleoc"
-	"github.com/openconfig/ygot/testutil"
-	"github.com/openconfig/ygot/uexampleoc"
-	"github.com/openconfig/ygot/ygot"
-	"github.com/openconfig/ygot/ytypes"
 
 	gnmipb "github.com/openconfig/gnmi/proto/gnmi"
 )

@@ -20,10 +20,10 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	"github.com/google/go-cmp/cmp"
-	oc "github.com/openconfig/ygot/exampleoc"
-	ocp "github.com/openconfig/ygot/exampleocpath"
-	"github.com/openconfig/ygot/ygot"
-	"github.com/openconfig/ygot/ypathgen"
+	oc "github.com/michaelhenkel/ygot/exampleoc"
+	ocp "github.com/michaelhenkel/ygot/exampleocpath"
+	"github.com/michaelhenkel/ygot/ygot"
+	"github.com/michaelhenkel/ygot/ypathgen"
 )
 
 // The device ID used throughout this test file.

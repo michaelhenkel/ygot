@@ -17,8 +17,8 @@ package ytypes
 import (
 	"testing"
 
+	"github.com/michaelhenkel/ygot/util"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/util"
 )
 
 var validStringSchema = yrangeAndPatternToStringSchema("valid-string-schema", yang.YRange{Min: yang.FromInt(2), Max: yang.FromInt(10)}, nil)

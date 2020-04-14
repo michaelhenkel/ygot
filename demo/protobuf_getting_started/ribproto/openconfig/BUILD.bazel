@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "openconfig.pb.go",
+        "pkg.go",
+    ],
+    importpath = "github.com/michaelhenkel/ygot/demo/protobuf_getting_started/ribproto/openconfig",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//demo/protobuf_getting_started/ribproto/openconfig/openconfig_rib_bgp:go_default_library",
+        "//proto/yext:go_default_library",
+        "//proto/ywrapper:go_default_library",
+        "@com_github_golang_protobuf//proto:go_default_library",
+    ],
+)

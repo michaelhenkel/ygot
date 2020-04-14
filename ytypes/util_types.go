@@ -19,9 +19,9 @@ import (
 	"reflect"
 	"strconv"
 
+	"github.com/michaelhenkel/ygot/util"
+	"github.com/michaelhenkel/ygot/ygot"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/util"
-	"github.com/openconfig/ygot/ygot"
 
 	log "github.com/golang/glog"
 )

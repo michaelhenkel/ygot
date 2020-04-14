@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "ocpath.go",
+        "ocpath_augment.go",
+    ],
+    importpath = "github.com/michaelhenkel/ygot/exampleocpath",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//exampleoc:go_default_library",
+        "//ygot:go_default_library",
+        "@com_github_openconfig_gnmi//proto/gnmi:go_default_library",
+    ],
+)

@@ -23,7 +23,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/google/go-cmp/cmp"
 	"github.com/kylelemons/godebug/pretty"
-	"github.com/openconfig/ygot/util"
+	"github.com/michaelhenkel/ygot/util"
 
 	gnmipb "github.com/openconfig/gnmi/proto/gnmi"
 )

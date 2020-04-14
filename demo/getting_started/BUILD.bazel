@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["interfaces.go"],
+    importpath = "github.com/michaelhenkel/ygot/demo/getting_started",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//demo/getting_started/pkg/ocdemo:go_default_library",
+        "//ygot:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "getting_started",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["interfaces_test.go"],
+    embed = [":go_default_library"],
+    deps = [
+        "//genutil:go_default_library",
+        "//ygen:go_default_library",
+    ],
+)

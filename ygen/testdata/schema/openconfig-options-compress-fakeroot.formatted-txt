@@ -16,9 +16,9 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/openconfig/ygot/ygot"
+	"github.com/michaelhenkel/ygot/ygot"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/ytypes"
+	"github.com/michaelhenkel/ygot/ytypes"
 )
 
 // Binary is a type that is used for fields that have a YANG type of

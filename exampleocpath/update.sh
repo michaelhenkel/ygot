@@ -17,7 +17,7 @@ go run ../ypathgen/generator/generator.go -path=public,deps -output_file=ocpath.
   -package_name=exampleocpath -fakeroot_name=root \
   -prefer_operational_state=true \
   -exclude_modules=ietf-interfaces \
-  -schema_struct_path=github.com/openconfig/ygot/exampleoc \
+  -schema_struct_path=github.com/michaelhenkel/ygot/exampleoc \
   -list_builder_key_threshold=3 \
   public/release/models/network-instance/openconfig-network-instance.yang \
   public/release/models/optical-transport/openconfig-optical-amplifier.yang \

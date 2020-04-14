@@ -22,9 +22,9 @@ import (
 	"fmt"
 	"sort"
 
+	"github.com/michaelhenkel/ygot/genutil"
+	"github.com/michaelhenkel/ygot/util"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/genutil"
-	"github.com/openconfig/ygot/util"
 )
 
 // Directory stores information needed for outputting a data node of the

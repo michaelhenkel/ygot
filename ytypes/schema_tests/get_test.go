@@ -20,11 +20,11 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
+	oc "github.com/michaelhenkel/ygot/exampleoc"
+	"github.com/michaelhenkel/ygot/ygot"
+	"github.com/michaelhenkel/ygot/ytypes"
 	"github.com/openconfig/gnmi/errdiff"
 	"github.com/openconfig/goyang/pkg/yang"
-	oc "github.com/openconfig/ygot/exampleoc"
-	"github.com/openconfig/ygot/ygot"
-	"github.com/openconfig/ygot/ytypes"
 
 	gpb "github.com/openconfig/gnmi/proto/gnmi"
 )

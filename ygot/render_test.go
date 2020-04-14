@@ -24,8 +24,8 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"github.com/kylelemons/godebug/pretty"
+	"github.com/michaelhenkel/ygot/testutil"
 	"github.com/openconfig/gnmi/errdiff"
-	"github.com/openconfig/ygot/testutil"
 
 	gnmipb "github.com/openconfig/gnmi/proto/gnmi"
 )

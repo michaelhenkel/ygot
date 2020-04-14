@@ -2,18 +2,19 @@
 // versions:
 // 	protoc-gen-go v1.20.0-devel
 // 	protoc        v3.11.4
-// source: github.com/openconfig/ygot/ygot/testdata/exschemapath/exschemapath.proto
+// source: github.com/michaelhenkel/ygot/ygot/testdata/exschemapath/exschemapath.proto
 
 package exschemapath
 
 import (
-	proto "github.com/golang/protobuf/proto"
-	_ "github.com/openconfig/ygot/proto/yext"
-	ywrapper "github.com/openconfig/ygot/proto/ywrapper"
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+
+	proto "github.com/golang/protobuf/proto"
+	_ "github.com/michaelhenkel/ygot/proto/yext"
+	ywrapper "github.com/michaelhenkel/ygot/proto/ywrapper"
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (

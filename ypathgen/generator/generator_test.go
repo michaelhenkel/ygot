@@ -19,7 +19,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/openconfig/ygot/ypathgen"
+	"github.com/michaelhenkel/ygot/ypathgen"
 )
 
 func TestWritePathCode(t *testing.T) {

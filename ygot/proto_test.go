@@ -7,8 +7,8 @@ import (
 	"github.com/openconfig/gnmi/errdiff"
 	"google.golang.org/protobuf/proto"
 
-	wpb "github.com/openconfig/ygot/proto/ywrapper"
-	epb "github.com/openconfig/ygot/ygot/testdata/exschemapath"
+	wpb "github.com/michaelhenkel/ygot/proto/ywrapper"
+	epb "github.com/michaelhenkel/ygot/ygot/testdata/exschemapath"
 )
 
 func TestPathsFromProto(t *testing.T) {

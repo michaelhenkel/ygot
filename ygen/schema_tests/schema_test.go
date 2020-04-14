@@ -20,8 +20,8 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/openconfig/ygot/exampleoc"
-	"github.com/openconfig/ygot/ygot"
+	"github.com/michaelhenkel/ygot/exampleoc"
+	"github.com/michaelhenkel/ygot/ygot"
 )
 
 func TestSimpleListRename(t *testing.T) {

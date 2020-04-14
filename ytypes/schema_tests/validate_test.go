@@ -28,16 +28,16 @@ import (
 
 	"github.com/golang/protobuf/proto"
 	"github.com/google/go-cmp/cmp"
-	"github.com/openconfig/ygot/experimental/ygotutils"
-	"github.com/openconfig/ygot/testutil"
-	"github.com/openconfig/ygot/util"
-	"github.com/openconfig/ygot/ygot"
-	"github.com/openconfig/ygot/ytypes"
+	"github.com/michaelhenkel/ygot/experimental/ygotutils"
+	"github.com/michaelhenkel/ygot/testutil"
+	"github.com/michaelhenkel/ygot/util"
+	"github.com/michaelhenkel/ygot/ygot"
+	"github.com/michaelhenkel/ygot/ytypes"
 
+	oc "github.com/michaelhenkel/ygot/exampleoc"
+	uoc "github.com/michaelhenkel/ygot/uexampleoc"
 	"github.com/openconfig/gnmi/errdiff"
 	gpb "github.com/openconfig/gnmi/proto/gnmi"
-	oc "github.com/openconfig/ygot/exampleoc"
-	uoc "github.com/openconfig/ygot/uexampleoc"
 	scpb "google.golang.org/genproto/googleapis/rpc/code"
 	spb "google.golang.org/genproto/googleapis/rpc/status"
 )

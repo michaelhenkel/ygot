@@ -18,8 +18,8 @@ import (
 	"reflect"
 	"testing"
 
+	"github.com/michaelhenkel/ygot/ygot"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/ygot"
 )
 
 func TestYangBuiltinTypeToGoType(t *testing.T) {

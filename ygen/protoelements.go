@@ -19,9 +19,9 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/michaelhenkel/ygot/genutil"
+	"github.com/michaelhenkel/ygot/util"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/genutil"
-	"github.com/openconfig/ygot/util"
 )
 
 // protoGenState contains the functionality and state for generating proto
@@ -84,7 +84,7 @@ func (s *protoGenState) buildDirectoryDefinitions(entries map[string]*yang.Entry
 // resolveProtoTypeArgs specifies input parameters required for resolving types
 // from YANG to protobuf.
 // TODO(robjs): Consider embedding resolveProtoTypeArgs in this struct per
-// discussion in https://github.com/openconfig/ygot/pull/57.
+// discussion in https://github.com/michaelhenkel/ygot/pull/57.
 type resolveProtoTypeArgs struct {
 	// basePackageNAme is the name of the package within which all generated packages
 	// are to be generated.
@@ -106,7 +106,7 @@ type resolveProtoTypeArgs struct {
 // The type returned is a wrapper protobuf such that in proto3 an unset field
 // can be distinguished from one set to the nil value.
 //
-// See https://github.com/openconfig/ygot/blob/master/docs/yang-to-protobuf-transformations-spec.md
+// See https://github.com/michaelhenkel/ygot/blob/master/docs/yang-to-protobuf-transformations-spec.md
 // for additional details as to the transformation from YANG to Protobuf.
 func (s *protoGenState) yangTypeToProtoType(args resolveTypeArgs, pargs resolveProtoTypeArgs) (*MappedType, error) {
 	// Handle typedef cases.
@@ -154,7 +154,7 @@ func (s *protoGenState) yangTypeToProtoType(args resolveTypeArgs, pargs resolveP
 			IsEnumeratedValue: true,
 		}, nil
 	case yang.Yidentityref:
-		// TODO(https://github.com/openconfig/ygot/issues/33) - refactor to allow
+		// TODO(https://github.com/michaelhenkel/ygot/issues/33) - refactor to allow
 		// this call outside of the switch.
 		if args.contextEntry == nil {
 			return nil, fmt.Errorf("cannot map identityref without context entry: %v", args)

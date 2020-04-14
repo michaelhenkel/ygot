@@ -19,8 +19,8 @@ package main
 import (
 	"fmt"
 
-	yb "github.com/openconfig/ygot/demo/uncompressed/pkg/demo"
-	"github.com/openconfig/ygot/ygot"
+	yb "github.com/michaelhenkel/ygot/demo/uncompressed/pkg/demo"
+	"github.com/michaelhenkel/ygot/ygot"
 )
 
 // Generate rule to create the example structs:

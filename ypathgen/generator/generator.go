@@ -25,9 +25,9 @@ import (
 	"strings"
 
 	log "github.com/golang/glog"
+	"github.com/michaelhenkel/ygot/genutil"
+	"github.com/michaelhenkel/ygot/ypathgen"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/genutil"
-	"github.com/openconfig/ygot/ypathgen"
 )
 
 var (

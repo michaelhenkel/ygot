@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["uncompressed.go"],
+    importpath = "github.com/michaelhenkel/ygot/demo/uncompressed",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//demo/uncompressed/pkg/demo:go_default_library",
+        "//ygot:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "uncompressed",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = ["uncompressed_test.go"],
+    data = glob(["testdata/**"]),
+    embed = [":go_default_library"],
+    deps = [
+        "//demo/uncompressed/pkg/demo:go_default_library",
+        "//testutil:go_default_library",
+        "@com_github_kylelemons_godebug//pretty:go_default_library",
+    ],
+)

@@ -19,8 +19,8 @@ import (
 	"reflect"
 	"strings"
 
+	"github.com/michaelhenkel/ygot/util"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/util"
 )
 
 // validateLengthSchema validates whether the given schema has a valid length

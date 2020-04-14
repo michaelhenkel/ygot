@@ -18,9 +18,9 @@ import (
 	"reflect"
 
 	"github.com/golang/protobuf/proto"
+	"github.com/michaelhenkel/ygot/util"
+	"github.com/michaelhenkel/ygot/ygot"
 	"github.com/openconfig/goyang/pkg/yang"
-	"github.com/openconfig/ygot/util"
-	"github.com/openconfig/ygot/ygot"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
