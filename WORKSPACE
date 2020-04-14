@@ -55,6 +55,88 @@ load("@rules_python//python:repositories.bzl", "py_repositories")
 
 py_repositories()
 
+GNMI_BUILD = """
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+proto_library(
+    name = "gnmi_ext_proto",
+    import_prefix = "github.com/openconfig/gnmi/proto/gnmi_ext",
+    strip_import_prefix = "/proto/gnmi_ext",
+    srcs = ["proto/gnmi_ext/gnmi_ext.proto"],
+    visibility = ["//visibility:public"],
+)
+
+go_proto_library(
+    name = "gnmi_ext_go_proto",
+    importpath = "github.com/openconfig/gnmi/proto/gnmi_ext",
+    compilers = [
+        "@io_bazel_rules_go//proto:go_grpc",
+    ],
+    proto = ":gnmi_ext_proto",
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "gnmi_proto",
+    import_prefix = "github.com/openconfig/gnmi/proto/gnmi",
+    strip_import_prefix = "/proto/gnmi",
+    srcs = ["proto/gnmi/gnmi.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+                "@com_google_protobuf//:any_proto",
+                "@com_google_protobuf//:descriptor_proto",
+                ":gnmi_ext_proto",
+    ],
+)
+
+go_proto_library(
+    name = "gnmi_go_proto",
+    importpath = "github.com/openconfig/gnmi/proto/gnmi",
+    compilers = [
+        "@io_bazel_rules_go//proto:go_grpc",
+    ],
+    proto = ":gnmi_proto",
+    visibility = ["//visibility:public"],
+    deps = [":gnmi_ext_go_proto"]
+)
+
+go_library(
+    name = "go_value_library",
+    srcs = ["value/value.go"],
+    importpath = "github.com/openconfig/gnmi/value",
+    visibility = ["//visibility:public"],
+    deps = [":gnmi_go_proto"],
+)
+
+go_library(
+    name = "go_errlist_library",
+    srcs = ["errlist/errlist.go"],
+    importpath = "github.com/openconfig/gnmi/errlist",
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "go_errdiff_library",
+    srcs = ["errdiff/errdiff.go"],
+    importpath = "github.com/openconfig/gnmi/errdiff",
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "go_ctree_library",
+    srcs = ["ctree/tree.go"],
+    importpath = "github.com/openconfig/gnmi/ctree",
+    visibility = ["//visibility:public"],
+)
+"""
+new_git_repository(
+    name = "gnmi_repository",
+    remote = "https://github.com/openconfig/gnmi.git",
+    commit = "58b1f73c2cbd8146bf69eb146b027e369b46a337",
+    build_file_content = GNMI_BUILD
+)
+
 go_repository(
     name = "co_honnef_go_tools",
     importpath = "honnef.co/go/tools",
@@ -128,8 +210,9 @@ go_repository(
 go_repository(
     name = "com_github_golang_protobuf",
     importpath = "github.com/golang/protobuf",
-    version = "v1.4.0",
-    sum = "h1:oOuy+ugB+P/kBdUnG5QaMXSIyJ1q38wWSojYCb3z5VQ=",
+    commit = "1b794fe86dd6a0c7c52ae69b5c9cb0aeedc52afa",
+    #version = "v1.4.0",
+    #sum = "h1:oOuy+ugB+P/kBdUnG5QaMXSIyJ1q38wWSojYCb3z5VQ=",
     #sum = "h1:6nsPYzhq5kReh6QImI3k5qWzO4PEbvbIW2cwSfR/6xs=",
     #version = "v1.3.2",
 )

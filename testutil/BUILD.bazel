@@ -12,8 +12,8 @@ go_library(
         "@com_github_golang_protobuf//proto:go_default_library",
         "@com_github_google_go_cmp//cmp:go_default_library",
         "@com_github_google_go_cmp//cmp/cmpopts:go_default_library",
-        "@com_github_openconfig_gnmi//proto/gnmi:go_default_library",
-        "@com_github_openconfig_gnmi//value:go_default_library",
+        "@gnmi_repository//:gnmi_go_proto",
+        "@gnmi_repository//:go_value_library",
         "@com_github_pmezard_go_difflib//difflib:go_default_library",
     ],
 )
@@ -29,6 +29,6 @@ go_test(
         "//ygot:go_default_library",
         "@com_github_golang_protobuf//proto:go_default_library",
         "@com_github_google_go_cmp//cmp:go_default_library",
-        "@com_github_openconfig_gnmi//proto/gnmi:go_default_library",
+        "@gnmi_repository//:gnmi_go_proto",
     ],
 )

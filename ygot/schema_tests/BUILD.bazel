@@ -19,8 +19,8 @@ go_test(
         "//ygot:go_default_library",
         "@com_github_golang_protobuf//proto:go_default_library",
         "@com_github_kylelemons_godebug//pretty:go_default_library",
-        "@com_github_openconfig_gnmi//errdiff:go_default_library",
-        "@com_github_openconfig_gnmi//proto/gnmi:go_default_library",
-        "@com_github_openconfig_gnmi//value:go_default_library",
+        "@gnmi_repository//:go_errdiff_library",
+        "@gnmi_repository//:gnmi_go_proto",
+        "@gnmi_repository//:go_value_library",
     ],
 )

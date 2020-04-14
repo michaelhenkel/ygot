@@ -10,7 +10,7 @@ go_library(
         "//ygot:go_default_library",
         "@com_github_golang_glog//:go_default_library",
         "@com_github_golang_protobuf//proto:go_default_library",
-        "@com_github_openconfig_gnmi//proto/gnmi:go_default_library",
+        "@gnmi_repository//:gnmi_go_proto",
     ],
 )
 
@@ -29,6 +29,6 @@ go_test(
         "//ygot:go_default_library",
         "@com_github_golang_protobuf//proto:go_default_library",
         "@com_github_google_go_cmp//cmp:go_default_library",
-        "@com_github_openconfig_gnmi//proto/gnmi:go_default_library",
+        "@gnmi_repository//:gnmi_go_proto",
     ],
 )
