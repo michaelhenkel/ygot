@@ -1,13 +1,22 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
 
+#http_archive(
+#    name = "io_bazel_rules_go",
+#    urls = [
+#        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
+#        "https://github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
+#    ],
+#    sha256 = "142dd33e38b563605f0d20e89d9ef9eda0fc3cb539a14be1bdb1350de2eda659",
+#)
+
 http_archive(
     name = "io_bazel_rules_go",
+    sha256 = "7b9bbe3ea1fccb46dcfa6c3f3e29ba7ec740d8733370e21cdc8937467b4a4349",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.22.4/rules_go-v0.22.4.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.22.4/rules_go-v0.22.4.tar.gz",
     ],
-    sha256 = "142dd33e38b563605f0d20e89d9ef9eda0fc3cb539a14be1bdb1350de2eda659",
 )
 
 http_archive(
@@ -29,20 +38,28 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 gazelle_dependencies()
 
+#http_archive(
+#    name = "rules_proto",
+#    sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
+#    strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
+#    urls = [
+#        "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+#        "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+#    ],
+#)
+
 http_archive(
     name = "rules_proto",
-    sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
-    strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
+    sha256 = "6117a0f96af1d264747ea3f3f29b7b176831ed8acfd428e04f17c48534c83147",
+    strip_prefix = "rules_proto-8b81c3ccfdd0e915e46ffa888d3cdb6116db6fa5",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
-        "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+        #"https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/8b81c3ccfdd0e915e46ffa888d3cdb6116db6fa5.tar.gz",
+        "http://localhost:8080/8b81c3ccfdd0e915e46ffa888d3cdb6116db6fa5.tar.gz",
     ],
 )
 
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-
 rules_proto_dependencies()
-
 rules_proto_toolchains()
 
 http_archive(
@@ -54,6 +71,68 @@ http_archive(
 load("@rules_python//python:repositories.bzl", "py_repositories")
 
 py_repositories()
+
+GOGOBUILD = """
+load("@com_google_protobuf//:protobuf.bzl", "cc_proto_library", "py_proto_library")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+filegroup(
+    name = "gogo_proto_fg",
+    srcs = glob([ "gogoproto/gogo.proto" ]),
+    visibility = [ "//visibility:public" ],
+)
+proto_library(
+    name = "gogo_proto",
+    srcs = [
+        "gogoproto/gogo.proto",
+    ],
+    deps = [
+        "@com_google_protobuf//:descriptor_proto",
+    ],
+    visibility = ["//visibility:public"],
+)
+go_proto_library(
+    name = "descriptor_go_proto",
+    importpath = "github.com/golang/protobuf/protoc-gen-go/descriptor",
+    proto = "@com_google_protobuf//:descriptor_proto",
+    visibility = ["//visibility:public"],
+)
+cc_proto_library(
+    name = "gogo_proto_cc",
+    srcs = [
+        "gogoproto/gogo.proto",
+    ],
+    default_runtime = "@com_google_protobuf//:protobuf",
+    protoc = "@com_google_protobuf//:protoc",
+    deps = ["@com_google_protobuf//:cc_wkt_protos"],
+    visibility = ["//visibility:public"],
+)
+go_proto_library(
+    name = "gogo_proto_go",
+    importpath = "gogoproto",
+    proto = ":gogo_proto",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":descriptor_go_proto",
+    ],
+)
+py_proto_library(
+    name = "gogo_proto_py",
+    srcs = [
+        "gogoproto/gogo.proto",
+    ],
+    default_runtime = "@com_google_protobuf//:protobuf_python",
+    protoc = "@com_google_protobuf//:protoc",
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:protobuf_python"],
+)
+"""
+
+new_git_repository(
+    name = "com_github_gogo_protobuf_repo",
+    remote = "https://github.com/gogo/protobuf.git",
+    branch = "master",
+    build_file_content = GOGOBUILD,
+)
 
 GNMI_BUILD = """
 load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
@@ -138,6 +217,13 @@ new_git_repository(
 )
 
 go_repository(
+    name = "com_github_gogo_protobuf_proto",
+    importpath = "github.com/gogo/protobuf",
+    sum = "h1:/s5zKNz0uPFCZ5hddgPdo2TK2TVrUNMn0OOX8/aZMTE=",
+    version = "v1.2.1",
+)
+
+go_repository(
     name = "co_honnef_go_tools",
     importpath = "honnef.co/go/tools",
     sum = "h1:/hemPrYIhOhy8zYrNj+069zDB68us2sMGsfkFJO0iZs=",
@@ -210,9 +296,9 @@ go_repository(
 go_repository(
     name = "com_github_golang_protobuf",
     importpath = "github.com/golang/protobuf",
-    commit = "1b794fe86dd6a0c7c52ae69b5c9cb0aeedc52afa",
-    #version = "v1.4.0",
-    #sum = "h1:oOuy+ugB+P/kBdUnG5QaMXSIyJ1q38wWSojYCb3z5VQ=",
+    #commit = "1b794fe86dd6a0c7c52ae69b5c9cb0aeedc52afa",
+    version = "v1.4.0",
+    sum = "h1:oOuy+ugB+P/kBdUnG5QaMXSIyJ1q38wWSojYCb3z5VQ=",
     #sum = "h1:6nsPYzhq5kReh6QImI3k5qWzO4PEbvbIW2cwSfR/6xs=",
     #version = "v1.3.2",
 )
@@ -365,16 +451,16 @@ go_repository(
     version = "v0.0.0-20191204190536-9bdfabe68543",
 )
 
-go_repository(
-    name = "com_github_google_protobuf",
-    importpath = "github.com/google/protobuf",
-    sum = "h1:J+nrmmGmKWdQobsM0Vom92fe/UGLowFjFl9jX+Oe/S4=",
-    version = "v3.11.4+incompatible",
-)
+#go_repository(
+#   name = "com_github_google_protobuf",
+#    importpath = "github.com/google/protobuf",
+#    sum = "h1:J+nrmmGmKWdQobsM0Vom92fe/UGLowFjFl9jX+Oe/S4=",
+#    version = "v3.11.4+incompatible",
+#)
 
-go_repository(
-    name = "com_github_openconfig_ygot",
-    importpath = "github.com/openconfig/ygot",
-    sum = "h1:kJJFPBrczC6TDnz/HMlFTJEdW2CuyUftV13XveIukg0=",
-    version = "v0.6.0",
-)
+#go_repository(
+#    name = "com_github_openconfig_ygot",
+#    importpath = "github.com/openconfig/ygot",
+#    sum = "h1:kJJFPBrczC6TDnz/HMlFTJEdW2CuyUftV13XveIukg0=",
+#    version = "v0.6.0",
+#)
