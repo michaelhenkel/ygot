@@ -16,8 +16,8 @@ go_library(
     importpath = "github.com/michaelhenkel/ygot/ygot",
     visibility = ["//visibility:public"],
     deps = [
-        "//proto/yext:yext_go_proto",
-        "//proto/ywrapper:ywrapper_go_proto",
+        "//proto/yext:go_default_library",
+        "//proto/ywrapper:go_default_library",
         "//util:go_default_library",
         "@com_github_golang_protobuf//proto:go_default_library",
         "@com_github_google_go_cmp//cmp:go_default_library",
@@ -46,7 +46,7 @@ go_test(
     ],
     embed = [":go_default_library"],
     deps = [
-        "//proto/ywrapper:ywrapper_go_proto",
+        "//proto/ywrapper:go_default_library",
         "//testutil:go_default_library",
         "//util:go_default_library",
         "//ygot/testdata/exschemapath:go_default_library",

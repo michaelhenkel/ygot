@@ -1,0 +1,5 @@
+visibility = ["//visibility:public"]
+
+exports_files(glob([
+    "*",
+]))

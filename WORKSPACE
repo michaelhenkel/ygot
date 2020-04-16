@@ -1,14 +1,6 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
-
-#http_archive(
-#    name = "io_bazel_rules_go",
-#    urls = [
-#        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
-#        "https://github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
-#    ],
-#    sha256 = "142dd33e38b563605f0d20e89d9ef9eda0fc3cb539a14be1bdb1350de2eda659",
-#)
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 http_archive(
     name = "io_bazel_rules_go",
@@ -18,6 +10,14 @@ http_archive(
         "https://github.com/bazelbuild/rules_go/releases/download/v0.22.4/rules_go-v0.22.4.tar.gz",
     ],
 )
+
+#git_repository(
+#    name = "io_bazel_rules_go",
+#    remote = "https://github.com/michaelhenkel/rules_go.git",
+#    commit = "a9d7e39e1522dc8ccae48e3133e5e7e8a3d54100",
+#    remote = "https://github.com/bazelbuild/rules_go.git",
+#    commit = "f0753e1a7afdfee846b570e7fca806e593ae9453",
+#)
 
 http_archive(
     name = "bazel_gazelle",
@@ -29,34 +29,70 @@ http_archive(
 )
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies", "go_register_toolchains")
-
-go_rules_dependencies()
-
-go_register_toolchains()
-
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
+PROTOBUF_BUILD = """
+filegroup(
+    name = "com_github_golang_protobuf-extras-patch",
+    srcs = ["third_party/com_github_golang_protobuf-extras.patch",
+    #srcs = glob(["**"]),
+    visibility = [ "//visibility:public" ],
+)
+exports_files(glob(["*.patch"]))
+
+filegroup(
+    name = "all_files",
+    testonly = True,
+    srcs = glob(["**"]),
+    visibility = ["//visibility:public"],
+)
+"""
+
+new_git_repository(
+    name = "com_github_bazelbuild_rules_go_repo",
+    remote = "https://github.com/bazelbuild/rules_go.git",
+    commit = "6d41742daa6355a0542364a7ea7583d755ca324c",
+    build_file_content = PROTOBUF_BUILD
+)
+
+#go_repository(
+#    name = "com_github_golang_protobuf",
+#    build_file_proto_mode = "disable_global",
+#    commit = "1b794fe86dd6a0c7c52ae69b5c9cb0aeedc52afa",
+#    importpath = "github.com/golang/protobuf",
+#    patches = [
+#	"//:patches/com_github_golang_protobuf-extras.patch",
+#        #"@com_github_bazelbuild_rules_go_repo//third_party:com_github_golang_protobuf-extras.patch",
+#	## gazelle args: -repo_root . -go_prefix github.com/golang/protobuf -proto disable_global
+#        #"@io_bazel_rules_go//third_party:com_github_golang_protobuf-gazelle.patch",
+#        #"@io_bazel_rules_go//third_party:com_github_golang_protobuf-extras.patch",
+#    ],
+#    patch_args = ["-p1"],
+#)
+go_rules_dependencies()
+go_register_toolchains()
 gazelle_dependencies()
 
-#http_archive(
-#    name = "rules_proto",
-#    sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
-#    strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
-#    urls = [
-#        "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
-#        "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
-#    ],
-#)
 
 http_archive(
     name = "rules_proto",
-    sha256 = "6117a0f96af1d264747ea3f3f29b7b176831ed8acfd428e04f17c48534c83147",
-    strip_prefix = "rules_proto-8b81c3ccfdd0e915e46ffa888d3cdb6116db6fa5",
+    sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
+    strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
     urls = [
-        #"https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/8b81c3ccfdd0e915e46ffa888d3cdb6116db6fa5.tar.gz",
-        "http://localhost:8080/8b81c3ccfdd0e915e46ffa888d3cdb6116db6fa5.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+        "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
     ],
 )
+
+#http_archive(
+#    name = "rules_proto",
+#    sha256 = "6117a0f96af1d264747ea3f3f29b7b176831ed8acfd428e04f17c48534c83147",
+#    strip_prefix = "rules_proto-8b81c3ccfdd0e915e46ffa888d3cdb6116db6fa5",
+#    urls = [
+#        #"https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/8b81c3ccfdd0e915e46ffa888d3cdb6116db6fa5.tar.gz",
+#        "http://localhost:8080/8b81c3ccfdd0e915e46ffa888d3cdb6116db6fa5.tar.gz",
+#    ],
+#)
 
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
 rules_proto_dependencies()
@@ -69,70 +105,7 @@ http_archive(
 )
 
 load("@rules_python//python:repositories.bzl", "py_repositories")
-
 py_repositories()
-
-GOGOBUILD = """
-load("@com_google_protobuf//:protobuf.bzl", "cc_proto_library", "py_proto_library")
-load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
-filegroup(
-    name = "gogo_proto_fg",
-    srcs = glob([ "gogoproto/gogo.proto" ]),
-    visibility = [ "//visibility:public" ],
-)
-proto_library(
-    name = "gogo_proto",
-    srcs = [
-        "gogoproto/gogo.proto",
-    ],
-    deps = [
-        "@com_google_protobuf//:descriptor_proto",
-    ],
-    visibility = ["//visibility:public"],
-)
-go_proto_library(
-    name = "descriptor_go_proto",
-    importpath = "github.com/golang/protobuf/protoc-gen-go/descriptor",
-    proto = "@com_google_protobuf//:descriptor_proto",
-    visibility = ["//visibility:public"],
-)
-cc_proto_library(
-    name = "gogo_proto_cc",
-    srcs = [
-        "gogoproto/gogo.proto",
-    ],
-    default_runtime = "@com_google_protobuf//:protobuf",
-    protoc = "@com_google_protobuf//:protoc",
-    deps = ["@com_google_protobuf//:cc_wkt_protos"],
-    visibility = ["//visibility:public"],
-)
-go_proto_library(
-    name = "gogo_proto_go",
-    importpath = "gogoproto",
-    proto = ":gogo_proto",
-    visibility = ["//visibility:public"],
-    deps = [
-        ":descriptor_go_proto",
-    ],
-)
-py_proto_library(
-    name = "gogo_proto_py",
-    srcs = [
-        "gogoproto/gogo.proto",
-    ],
-    default_runtime = "@com_google_protobuf//:protobuf_python",
-    protoc = "@com_google_protobuf//:protoc",
-    visibility = ["//visibility:public"],
-    deps = ["@com_google_protobuf//:protobuf_python"],
-)
-"""
-
-new_git_repository(
-    name = "com_github_gogo_protobuf_repo",
-    remote = "https://github.com/gogo/protobuf.git",
-    branch = "master",
-    build_file_content = GOGOBUILD,
-)
 
 GNMI_BUILD = """
 load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
@@ -150,7 +123,7 @@ go_proto_library(
     name = "gnmi_ext_go_proto",
     importpath = "github.com/openconfig/gnmi/proto/gnmi_ext",
     compilers = [
-        "@io_bazel_rules_go//proto:go_grpc",
+        "@io_bazel_rules_go//proto:go_proto",
     ],
     proto = ":gnmi_ext_proto",
     visibility = ["//visibility:public"],
@@ -173,7 +146,7 @@ go_proto_library(
     name = "gnmi_go_proto",
     importpath = "github.com/openconfig/gnmi/proto/gnmi",
     compilers = [
-        "@io_bazel_rules_go//proto:go_grpc",
+        "@io_bazel_rules_go//proto:go_proto",
     ],
     proto = ":gnmi_proto",
     visibility = ["//visibility:public"],
@@ -214,6 +187,20 @@ new_git_repository(
     remote = "https://github.com/openconfig/gnmi.git",
     commit = "58b1f73c2cbd8146bf69eb146b027e369b46a337",
     build_file_content = GNMI_BUILD
+)
+
+go_repository(
+    name = "org_golang_google_protobuf",
+    importpath = "google.golang.org/protobuf",
+    sum = "h1:qdOKuR/EIArgaWNjetjgTzgVTAZ+S/WXVrq9HW9zimw=",
+    version = "v1.21.0",
+)
+
+go_repository(
+    name = "org_golang_google_genproto",
+    importpath = "google.golang.org/genproto",
+    sum = "h1:gSJIx1SDwno+2ElGhA4+qG2zF97qiUzTM+rQ0klBOcE=",
+    version = "v0.0.0-20190819201941-24fa4b261c55",
 )
 
 go_repository(
@@ -294,13 +281,14 @@ go_repository(
 )
 
 go_repository(
-    name = "com_github_golang_protobuf",
+    name = "com_github_golang_protobuf_a",
     importpath = "github.com/golang/protobuf",
-    #commit = "1b794fe86dd6a0c7c52ae69b5c9cb0aeedc52afa",
-    version = "v1.4.0",
-    sum = "h1:oOuy+ugB+P/kBdUnG5QaMXSIyJ1q38wWSojYCb3z5VQ=",
-    #sum = "h1:6nsPYzhq5kReh6QImI3k5qWzO4PEbvbIW2cwSfR/6xs=",
-    #version = "v1.3.2",
+    commit = "1b794fe86dd6a0c7c52ae69b5c9cb0aeedc52afa",
+#    version = "v1.4.0",
+#    #sum = "h1:oOuy+ugB+P/kBdUnG5QaMXSIyJ1q38wWSojYCb3sdsdsdsd=",
+#    #sum = "h1:oOuy+ugB+P/kBdUnG5QaMXSIyJ1q38wWSojYCb3z5VQ=",
+#    #sum = "h1:6nsPYzhq5kReh6QImI3k5qWzO4PEbvbIW2cwSfR/6xs=",
+#    #version = "v1.3.2",
 )
 
 go_repository(
@@ -315,14 +303,6 @@ go_repository(
     importpath = "github.com/kylelemons/godebug",
     sum = "h1:RPNrshWIDI6G2gRW9EHilWtl7Z6Sb1BR0xunSBf0SNc=",
     version = "v1.1.0",
-)
-
-go_repository(
-    name = "com_github_openconfig_gnmi",
-    build_file_proto_mode = "disable",
-    importpath = "github.com/openconfig/gnmi",
-    sum = "h1:w4bhoSldyCy0ZwITv0OpqQbX5or7cF1y3CccrvMaZSo=",
-    version = "v0.0.0-20200324165432-58b1f73c2cbd",
 )
 
 go_repository(
@@ -360,12 +340,12 @@ go_repository(
     version = "v1.4.0",
 )
 
-go_repository(
-    name = "org_golang_google_genproto",
-    importpath = "google.golang.org/genproto",
-    sum = "h1:gSJIx1SDwno+2ElGhA4+qG2zF97qiUzTM+rQ0klBOcE=",
-    version = "v0.0.0-20190819201941-24fa4b261c55",
-)
+#go_repository(
+#    name = "org_golang_google_genproto",
+#    importpath = "google.golang.org/genproto",
+#    sum = "h1:gSJIx1SDwno+2ElGhA4+qG2zF97qiUzTM+rQ0klBOcE=",
+#    version = "v0.0.0-20190819201941-24fa4b261c55",
+#)
 
 go_repository(
     name = "org_golang_google_grpc",
